@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import TaskForm from "../components/TaskForm";
-import { Box, Grid } from "grommet";
+import { Box, Button, Grid } from "grommet";
 import TaskMap from "../components/TaskMap";
 
 // class ToDoListPage extends React.Component {
@@ -47,6 +47,7 @@ import TaskMap from "../components/TaskMap";
 
 function ToDoListPage() {
   const [list, setList] = useState([]);
+  const [checked, setChecked] = useState(false);
 
   const addToList = (task) => {
     //spread operator to combine new and old to dos
@@ -57,13 +58,13 @@ function ToDoListPage() {
     let updatedList = list.map((task) => {
       if (task.id === id) {
         task.isComplete = !task.isComplete;
+        setChecked(!checked);
       }
       return task;
     });
     setList(updatedList);
   };
 
-  //removes all tasks -
   const deleteTask = (id) => {
     const removeArr = [...list].filter((task) => task.id !== id);
     setList(removeArr);
@@ -75,6 +76,11 @@ function ToDoListPage() {
     );
   };
 
+  //removes all tasks from list-
+  const deleteAll = () => {
+    setList([]);
+  };
+
   return (
     <Box>
       <Grid gap="xsmall">
@@ -83,14 +89,13 @@ function ToDoListPage() {
       <Grid gap="small">
         <TaskMap
           list={list}
-          //   list={[
-          //     { id: "1", content: "rachelli" },
-          //     { id: "2", content: "hi" },
-          //   ]}
           completeTask={completeTask}
           deleteTask={deleteTask}
           editTask={editTask}
         />
+      </Grid>
+      <Grid gap="small">
+        <Button background="brand" onClick={deleteAll} label="clear all" />
       </Grid>
     </Box>
   );
