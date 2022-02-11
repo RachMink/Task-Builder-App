@@ -1,10 +1,8 @@
 import React from "react";
 import { useState } from "react";
-import Post from "../components/Post";
-import Loading from "../components/Loading";
-import TaskForm from "../components/TaskForm"
-import { Grommet, Box, Grid, Form } from "grommet";
-import { FormEdit, Trash } from "grommet-icons";
+import TaskForm from "../components/TaskForm";
+import { Box, Grid } from "grommet";
+import TaskMap from "../components/TaskMap";
 
 // class ToDoListPage extends React.Component {
 //   state = {
@@ -26,7 +24,7 @@ import { FormEdit, Trash } from "grommet-icons";
 
 //   render() {
 //     if (this.state.loading) {
-        
+
 //     // return <Loading />;
 
 //     }
@@ -34,7 +32,7 @@ import { FormEdit, Trash } from "grommet-icons";
 //     return (
 //       <Box>
 //         <Box flex align="center" justify="center">
-//           {this.state.list}
+//           <TaskForm />
 //         </Box>
 
 //         <div className="row justify-content-center">{this.state.items}</div>
@@ -45,28 +43,57 @@ import { FormEdit, Trash } from "grommet-icons";
 
 // export default ToDoListPage;
 
-function ToDoListPage ({list, completeTask , deleteTask}){
+//look @ buyhomepage for functional component fetch call.
 
-const [edit , setEdit] = useState({id:null, value:""})
+function ToDoListPage() {
+  const [list, setList] = useState([]);
 
-  return list.map((task,index)=>{
-        <Form>
-          <Grid>
-            <Box>
-              {console.log("oooooo")}
-              {console.log(task.content)}
-              <div>{task.id}</div>
-            </Box>
+  const addToList = (task) => {
+    //spread operator to combine new and old to dos
+    setList([task, ...list]);
+  };
 
-            <FormEdit
-              onClick={() => setEdit({ id: task.id, value: task.content })}
-            />
-            <Trash onClick={() => deleteTask(task.id)} />
-          </Grid>
-          ;
-        </Form>;
-  })
-  
+  const completeTask = (id) => {
+    let updatedList = list.map((task) => {
+      if (task.id === id) {
+        task.isComplete = !task.isComplete;
+      }
+      return task;
+    });
+    setList(updatedList);
+  };
+
+  //removes all tasks -
+  const deleteTask = (id) => {
+    const removeArr = [...list].filter((task) => task.id !== id);
+    setList(removeArr);
+  };
+
+  const editTask = (taskId, newInfo) => {
+    setList((prev) =>
+      prev.map((item) => (item.id === taskId ? newInfo : item))
+    );
+  };
+
+  return (
+    <Box>
+      <Grid gap="xsmall">
+        <TaskForm onSubmit={addToList} />
+      </Grid>
+      <Grid gap="small">
+        <TaskMap
+          list={list}
+          //   list={[
+          //     { id: "1", content: "rachelli" },
+          //     { id: "2", content: "hi" },
+          //   ]}
+          completeTask={completeTask}
+          deleteTask={deleteTask}
+          editTask={editTask}
+        />
+      </Grid>
+    </Box>
+  );
 }
 
 export default ToDoListPage;

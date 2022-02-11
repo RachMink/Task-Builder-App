@@ -3,7 +3,7 @@ import { useState } from "react";
 import Post from "../components/Post";
 import Loading from "../components/Loading";
 import TaskForm from "../components/TaskForm";
-import { Grommet, Box, Grid, Form } from "grommet";
+import { Grommet, Box, Grid, Form, CardFooter, CardBody, Card } from "grommet";
 import { FormEdit, Trash } from "grommet-icons";
 
 // class ToDoListPage extends React.Component {
@@ -45,24 +45,47 @@ import { FormEdit, Trash } from "grommet-icons";
 
 // export default ToDoListPage;
 
-function TaskMap({ list, completeTask, deleteTask }) {
+function TaskMap({ list, completeTask, deleteTask , editTask}) {
   const [edit, setEdit] = useState({ id: null, value: "" });
 
+  const submitEdit = value =>{
+      editTask(edit.id, value);
+      setEdit({
+          id:null,
+          value:''
+      });
+  };
+
+  if(edit.id){
+      return <TaskForm edit={edit} onSubmit={submitEdit}/>
+  }
+
   return list.map((task, index) => (
-    <Form>
-      <Grid>
-        <Box>
+    // <Form>
+    //   <Grid gap="small">
+        <Card height="xsmall" width="medium" round="small" overflow="auto">
           {console.log("oooooo")}
           {console.log(task.content)}
-          <div>{task.content}</div>
-
-          <FormEdit
-            onClick={() => setEdit({ id: task.id, value: task.content })}
-          />
-          <Trash onClick={() => deleteTask(task.id)} />
-        </Box>
-      </Grid>
-    </Form>
+          {/* change complateTask to click off checkbox when completed */}
+          <CardBody
+            key={task.id}
+            onClick={() => completeTask(task.id)}
+            pad={{ horizontal: "small", vertical: "xsmall" }}
+          >
+            {task.content}
+          </CardBody>
+          <CardFooter
+            pad={{ horizontal: "small", vertical: "xsmall" }}
+            background="brand"
+          >
+            <FormEdit
+              onClick={() => setEdit({ id: task.id, value: task.content })}
+            />
+            <Trash size="small" onClick={() => deleteTask(task.id)} />
+          </CardFooter>
+        </Card>
+    //   </Grid>
+    // </Form>
   ));
 }
 

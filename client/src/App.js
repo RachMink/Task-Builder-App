@@ -13,21 +13,14 @@ import AboutUsPage from './pages/AboutUsPage';
 import ToDoListPage from './pages/ToDoListPage';
 import {
   Box,
-  Button,
-  Collapsible,
   Heading,
   Grommet,
-  Layer,
-  Nav,
-  Sidebar,
-  Avatar,
-  Anchor,
   ResponsiveContext,
 } from "grommet";
 import { Add } from "grommet-icons";
 
 import './App.css';
-import TaskList from './components/TaskList';
+import TaskForm from './components/TaskForm';
 
 const theme = {
   global: {
@@ -80,7 +73,7 @@ class App extends React.Component {
                 overflow={({ vertical: "scroll" }, { horizontal: "hidden" })}
               >
                 <Box flex align="center" justify="center">
-                  <TaskList />
+                  <ToDoListPage />
                 </Box>
               </Box>
             </Box>

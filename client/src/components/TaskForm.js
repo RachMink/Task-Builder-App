@@ -14,32 +14,33 @@ import {
 import { Add } from "grommet-icons";
 
 function TaskForm(props){
-    const [task , setTask] = useState("");
+    
+  const [task , setTask] = useState("");
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
-    const handleSubmit = event =>{
-        event.preventDefault();
-        
-        props.onSubmit({
-            content: task
-        });
+    props.onSubmit({
+      id: Math.floor(Math.random() * 10000),
+      content: task,
+    });
 
-        setTask("");
-    };
+    setTask("");
+  };
 
-    return (
-      <Form onSubmit={handleSubmit}>
-        <FormField>
-          <TextInput
-            value={task}
-            placeholder="Add task to do"
-            id="content"
-            name="content"
-            onChange={(event) => setTask(event.target.value)}
-          />
-        </FormField>
-        <Button type="submit" primary label={<Add/>} />
-      </Form>
-    );
+  return (
+    <Form onSubmit={handleSubmit}>
+      <FormField>
+        <TextInput
+          value={task}
+          placeholder="Add task to do"
+          id="content"
+          name="content"
+          onChange={(event) => setTask(event.target.value)}
+        />
+      </FormField>
+      <Button type="submit" primary label={<Add />} />
+    </Form>
+  );
 }
 export default TaskForm;
 // class AddTask extends React.Component {
