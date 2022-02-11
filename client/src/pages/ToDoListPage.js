@@ -25,7 +25,7 @@ import TaskMap from "../components/TaskMap";
 //   render() {
 //     if (this.state.loading) {
 
-//     // return <Loading />;
+//     // return <Spinner />;
 
 //     }
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import Post from '../components/Post';
-import Loading from '../components/Loading';
+import { Spinner } from 'grommet';
 
 
 class PostsListPage extends React.Component {
@@ -23,7 +23,7 @@ class PostsListPage extends React.Component {
 
   render() {
     if(this.state.loading) {
-      return <Loading />;
+      return <Spinner />;
     }
 
     return (

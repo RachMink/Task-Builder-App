@@ -1,7 +1,7 @@
 import React from 'react';
 import Post from '../components/Post';
-import Loading from '../components/Loading';
 import { Redirect } from 'react-router-dom';
+import { Spinner } from 'grommet';
 
 class ShowPostPage extends React.Component {
   state = {
@@ -30,7 +30,7 @@ class ShowPostPage extends React.Component {
 
   render() {
     if(this.state.notFound) return <Redirect to="/" />;
-    if(this.state.loading) return <Loading />;
+    if(this.state.loading) return <Spinner />;
     return this.state.post;
   }
 }
