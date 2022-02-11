@@ -1,4 +1,4 @@
-# Project Starter
+# to-do app
 A starter repo for building CUNY Tech Prep projects with React, Express.js, and Sequelize.js
 
 ## Stack
@@ -11,7 +11,7 @@ A starter repo for building CUNY Tech Prep projects with React, Express.js, and 
 *React client*
 
 - Built using `create-react-app` and configured to work with the api.
-- Bootstrap 4.x added to `/client/public/index.html`
+- Grommet framework
 - React Router
 
 
