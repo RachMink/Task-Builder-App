@@ -2,14 +2,11 @@ import React from "react";
 import { useState } from "react";
 import { Redirect } from "react-router-dom";
 import {
+  Box,
   Button,
-  CheckBoxGroup,
-  DateInput,
   Form,
   FormField,
-  Box,
   TextInput,
-  Grommet,
 } from "grommet";
 import { Add } from "grommet-icons";
 
@@ -25,16 +22,23 @@ function TaskForm({onSubmit}){
 
   return (
     <Form onSubmit={handleSubmit}>
-      <FormField>
-        <TextInput
-          value={task}
-          placeholder="Add task to do"
-          id="content"
-          name="content"
-          onChange={(event) => setTask(event.target.value)}
-        />
-      </FormField>
-      <Button type="submit" primary label={<Add />} />
+      
+      <Box fill align="center" justify="start" pad="medium">
+        <Box direction="row" width="medium" gap="xsmall">
+          <TextInput
+            value={task}
+            id="content"
+            name="content"
+            onChange={(event) => setTask(event.target.value)}
+            reverse
+            placeholder="Add task"
+          />
+
+          <Box align="center" gap="small">
+            <Button icon={<Add />} hoverIndicator primary type="submit" />
+          </Box>
+        </Box>
+      </Box>
     </Form>
   );
 }
