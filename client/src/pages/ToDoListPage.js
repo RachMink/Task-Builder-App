@@ -95,19 +95,26 @@ function ToDoListPage() {
   if (loading) {
     return <Spinner />; 
   }
+
   return (
-    <Box>
+    <Box align="center" pad="small">
       <Grid gap="xsmall">
-        <TaskForm onSubmit={addToList} />
+        {/* <Box align="center" pad="small"> */}
+          <TaskForm onSubmit={addToList} />
+        {/* </Box> */}
       </Grid>
-      <Grid gap="small">
-        <TaskMap
-          list={list}
-          completeTask={completeTask}
-          deleteTask={deleteTask}
-          editTask={editTask}
-        />
+
+      <Grid gap="small" align="center">
+
+          <TaskMap
+            list={list}
+            completeTask={completeTask}
+            deleteTask={deleteTask}
+            editTask={editTask}
+          />
+   
       </Grid>
+      
       <Grid gap="small">
         <Box align="center" pad="medium">
           <Button background="brand" onClick={deleteAll} label="clear all" />

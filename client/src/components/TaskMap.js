@@ -3,6 +3,7 @@ import { useState } from "react";
 import TaskForm from "../components/TaskForm";
 import { Grommet, Box, Grid, CardFooter, CardBody, Card, CheckBox, CardHeader } from "grommet";
 import { FormEdit, Trash } from "grommet-icons";
+import TaskEditForm from "./TaskEditForm";
 
 
 function TaskMap({ list, completeTask, deleteTask , editTask}) {
@@ -10,15 +11,15 @@ function TaskMap({ list, completeTask, deleteTask , editTask}) {
  
 
   const submitEdit = value =>{
-      editTask(edit.id, value);
-      setEdit({
-          id:null,
-          value:''
-      });
+    editTask(edit.id, value);
+    setEdit({
+      id:null,
+      value:''
+    });
   };
 
   if(edit.id){
-      return <TaskForm edit={edit} onSubmit={submitEdit}/>
+    return <TaskEditForm edit={edit} onSubmit={submitEdit}/>
   }
 
   return list.map((task, index) => (
