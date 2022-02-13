@@ -81,10 +81,10 @@ class App extends React.Component {
         </ResponsiveContext.Consumer>
         <Router>
           <Switch>
-            {/* <Route path="/" component={ToDoListPage} /> */}
-            <Route path="/posts/new" component={PostFormPage} />
+            <Route path="/tasks" component={ToDoListPage} />
+            {/* <Route path="/posts/new" component={PostFormPage} />
             <Route path="/posts/:id" component={ShowPostPage} />
-            <Route path="/about-us" component={AboutUsPage} />
+            <Route path="/about-us" component={AboutUsPage} /> */}
           </Switch>
         </Router>
       </Grommet>
