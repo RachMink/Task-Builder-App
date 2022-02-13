@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import TaskForm from "../components/TaskForm";
-import { Box, Button, Grid } from "grommet";
+import { Box, Button, Grid, Spinner } from "grommet";
 import TaskMap from "../components/TaskMap";
 
 //look @ buyhomepage for functional component fetch call.
@@ -26,9 +26,13 @@ function ToDoListPage() {
       .then((data) => {
         if (!data) {
           setList([]);
+          setLoading(true);
         } else {
           setList(data);
         }
+      })
+      .catch((err) => {
+        setLoading(true);
       });
   };
 
@@ -87,7 +91,10 @@ function ToDoListPage() {
     })
     .then(setList([]));
   };
-
+  
+  if (loading) {
+    return <Spinner />; 
+  }
   return (
     <Box>
       <Grid gap="xsmall">
@@ -102,7 +109,9 @@ function ToDoListPage() {
         />
       </Grid>
       <Grid gap="small">
-        <Button background="brand" onClick={deleteAll} label="clear all" />
+        <Box align="center" pad="medium">
+          <Button background="brand" onClick={deleteAll} label="clear all" />
+        </Box>
       </Grid>
     </Box>
   );
