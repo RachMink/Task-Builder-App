@@ -13,17 +13,13 @@ import {
 } from "grommet";
 import { Add } from "grommet-icons";
 
-function TaskForm(props){
-    
+function TaskForm({onSubmit}){
   const [task , setTask] = useState("");
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    props.onSubmit({
-      id: Math.floor(Math.random() * 10000),
-      content: task,
-    });
-
+    onSubmit({content: task,});
     setTask("");
   };
 
