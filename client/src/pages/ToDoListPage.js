@@ -11,6 +11,10 @@ function ToDoListPage() {
   const [checked, setChecked] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  useEffect(() => {
+    getTaskList();
+  }, []);
+
   //gets all tasks posted 
   const getTaskList = () => {
     fetch("/api/tasks")
@@ -27,10 +31,6 @@ function ToDoListPage() {
         }
       });
   };
-
-  useEffect(() => {
-    getTaskList();
-  }, []);
 
   //adds a task to the list through POST method 
   const addToList = (task) => {
@@ -52,10 +52,12 @@ function ToDoListPage() {
       });
   };
 
+  //checkoff task as done
   const completeTask = () => {
     setChecked(!checked);
   };
 
+  //delete task
   const deleteTask = (id) => {
     fetch(`/api/tasks/${id}`,{
       method: "DELETE"
@@ -64,6 +66,7 @@ function ToDoListPage() {
     })
   };
 
+  //edit a task
   const editTask = (taskId, newInfo) => {
     fetch(`/api/tasks/${taskId}`, {
       method: "PUT",
@@ -77,12 +80,12 @@ function ToDoListPage() {
     );
   };
 
-  //removes all tasks from list-
+  //deletes all tasks from list-
   const deleteAll = () => {
     fetch("/api/tasks", {
       method: "DELETE"
     })
-      .then(setList([]));
+    .then(setList([]));
   };
 
   return (

@@ -30,9 +30,6 @@ function TaskMap({ list, completeTask, deleteTask , editTask}) {
       overflow="auto"
       gap="small"
     >
-      {console.log("oooooo")}
-      {console.log(task.content)}
-
       <CardBody
         key={task.id}
         pad={{ horizontal: "small", vertical: "medium" }}
@@ -42,6 +39,7 @@ function TaskMap({ list, completeTask, deleteTask , editTask}) {
           label={task.content}
           onClick={() => completeTask()}
         />
+
       </CardBody>
 
       <CardFooter
@@ -52,10 +50,11 @@ function TaskMap({ list, completeTask, deleteTask , editTask}) {
           onClick={() => setEdit({ id: task.id, value: task.content })}
         />
         <Trash size="small" onClick={() => deleteTask(task.id)} />
+
       </CardFooter>
+      
     </Card>
-    //   </Grid>
-    // </Form>
+
   ));
 }
 
