@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import TaskForm from "../components/TaskForm";
 import { Box, Button, Grid } from "grommet";
@@ -49,9 +49,46 @@ function ToDoListPage() {
   const [list, setList] = useState([]);
   const [checked, setChecked] = useState(false);
 
+  const getTaskList = () => {
+    fetch("/api/tasks")
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+      })
+      .then((data) => {
+        if (!data) {
+          setList([]);
+        } else {
+          setList(data);
+        }
+      });
+  };
+
+  useEffect(() => {
+    getTaskList();
+  }, []);
+
   const addToList = (task) => {
-    //spread operator to combine new and old to dos
-    setList([task, ...list]);
+    
+    fetch("/api/tasks/new", {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ content: task.content }),
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+      })
+      .then((data) => {
+        setList([data, ...list]);
+      });
+
+   
   };
 
   const completeTask = (id) => {
