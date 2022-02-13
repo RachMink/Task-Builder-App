@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../models");
+const task = require("../models/task");
 const { Task } = db;
 
 // This is a simple example for providing basic CRUD routes for
@@ -73,6 +74,15 @@ router.delete("/:id", (req, res) => {
     task.destroy();
     res.sendStatus(204);
   });
+});
+
+//delete all 
+router.delete("/", (req, res) => {
+  Task.destroy({
+    where:{}, truncate: true
+
+  })
+  res.sendStatus(204);
 });
 
 module.exports = router;
