@@ -8,7 +8,7 @@ import {
   FormField,
   TextInput,
 } from "grommet";
-import { Add } from "grommet-icons";
+import { Add, FormAdd } from "grommet-icons";
 
 function TaskForm({onSubmit}){
   const [task , setTask] = useState("");
@@ -34,8 +34,8 @@ function TaskForm({onSubmit}){
             placeholder="Add task"
           />
 
-          <Box align="center" gap="small">
-            <Button icon={<Add />} hoverIndicator primary type="submit" />
+          <Box align="center" gap="xsmall">
+            <Button icon={<FormAdd />} hoverIndicator primary type="submit" />
           </Box>
         </Box>
       </Box>
