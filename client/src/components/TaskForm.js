@@ -19,7 +19,7 @@ function TaskForm({onSubmit}){
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    onSubmit({content: task,});
+    onSubmit({content: task});
     setTask("");
   };
 
