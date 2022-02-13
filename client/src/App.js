@@ -3,13 +3,7 @@ import {
   BrowserRouter as Router, 
   Switch, 
   Route, 
-  Link,
-  NavLink
 } from 'react-router-dom';
-import PostsListPage from './pages/PostsListPage';
-import PostFormPage from './pages/PostFormPage';
-import ShowPostPage from './pages/ShowPostPage';
-import AboutUsPage from './pages/AboutUsPage';
 import ToDoListPage from './pages/ToDoListPage';
 import {
   Box,
@@ -17,10 +11,7 @@ import {
   Grommet,
   ResponsiveContext,
 } from "grommet";
-import { Add } from "grommet-icons";
-
 import './App.css';
-import TaskForm from './components/TaskForm';
 
 const theme = {
   global: {
@@ -64,7 +55,7 @@ class App extends React.Component {
             >
               <AppBar>
                 <Heading level="3" margin="none">
-                  Get it done.
+                  Just Do It.
                 </Heading>
               </AppBar>
               <Box
@@ -82,9 +73,6 @@ class App extends React.Component {
         <Router>
           <Switch>
             <Route path="/tasks" component={ToDoListPage} />
-            {/* <Route path="/posts/new" component={PostFormPage} />
-            <Route path="/posts/:id" component={ShowPostPage} />
-            <Route path="/about-us" component={AboutUsPage} /> */}
           </Switch>
         </Router>
       </Grommet>
