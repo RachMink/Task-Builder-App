@@ -40,7 +40,7 @@ function TaskMap({ list, completeTask, deleteTask , editTask}) {
         <CheckBox
           checked={task.checked}
           label={task.content}
-          onClick={() => completeTask(task.id)}
+          onClick={() => completeTask()}
         />
       </CardBody>
 

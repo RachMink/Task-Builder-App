@@ -4,51 +4,14 @@ import TaskForm from "../components/TaskForm";
 import { Box, Button, Grid } from "grommet";
 import TaskMap from "../components/TaskMap";
 
-// class ToDoListPage extends React.Component {
-//   state = {
-//     items: [],
-//     loading: true,
-//   };
-
-//   componentDidMount() {
-//     fetch('/api/todo/new')
-//       .then((res) => res.json())
-//       .then((items) => {
-//         this.setState({
-//           loading: false,
-//           items: items.map((p, ii) => <Post {...p} key={ii} />),
-//         });
-//       })
-//       .catch((err) => console.log("API ERROR: ", err));
-//   }
-
-//   render() {
-//     if (this.state.loading) {
-
-//     // return <Spinner />;
-
-//     }
-
-//     return (
-//       <Box>
-//         <Box flex align="center" justify="center">
-//           <TaskForm />
-//         </Box>
-
-//         <div className="row justify-content-center">{this.state.items}</div>
-//       </Box>
-//     );
-//   }
-// }
-
-// export default ToDoListPage;
-
 //look @ buyhomepage for functional component fetch call.
 
 function ToDoListPage() {
   const [list, setList] = useState([]);
   const [checked, setChecked] = useState(false);
+  const [loading, setLoading] = useState(false);
 
+  //gets all tasks posted 
   const getTaskList = () => {
     fetch("/api/tasks")
       .then((res) => {
@@ -69,8 +32,8 @@ function ToDoListPage() {
     getTaskList();
   }, []);
 
+  //adds a task to the list through POST method 
   const addToList = (task) => {
-    
     fetch("/api/tasks/new", {
       method: "POST",
       credentials: "include",
@@ -87,35 +50,39 @@ function ToDoListPage() {
       .then((data) => {
         setList([data, ...list]);
       });
-
-   
   };
 
-  const completeTask = (id) => {
-    let updatedList = list.map((task) => {
-      if (task.id === id) {
-        task.isComplete = !task.isComplete;
-        setChecked(!checked);
-      }
-      return task;
-    });
-    setList(updatedList);
+  const completeTask = () => {
+    setChecked(!checked);
   };
 
   const deleteTask = (id) => {
-    const removeArr = [...list].filter((task) => task.id !== id);
-    setList(removeArr);
+    fetch(`/api/tasks/${id}`,{
+      method: "DELETE"
+    }).then(()=> {
+      setList([...list].filter((task) => task.id !== id));
+    })
   };
 
   const editTask = (taskId, newInfo) => {
+    fetch(`/api/tasks/${taskId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newInfo),
+    })
     setList((prev) =>
-      prev.map((item) => (item.id === taskId ? newInfo : item))
+      prev.map((task) => (task.id === taskId ? newInfo : task))
     );
   };
 
   //removes all tasks from list-
   const deleteAll = () => {
-    setList([]);
+    fetch("/api/tasks", {
+      method: "DELETE"
+    })
+      .then(setList([]));
   };
 
   return (
