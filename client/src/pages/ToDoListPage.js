@@ -52,7 +52,7 @@ function ToDoListPage() {
         }
       })
       .then((data) => {
-        setList([data, ...list]);
+        setList([...list,data]);
       });
   };
 
@@ -61,7 +61,7 @@ function ToDoListPage() {
 
       let updatedList = list.map((task) => {
           if (task.id === id) {
-            task.isComplete = !task.isComplete;
+            task.checked = !task.checked;
             setChecked(!checked);
           }
           return task;
