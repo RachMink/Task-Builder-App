@@ -16,7 +16,7 @@ import './App.css';
 const theme = {
   global: {
     colors: {
-      brand: "#FFA16B",
+      brand: "#fcc8a7",
     },
     font: {
       family: "Roboto Condensed",
