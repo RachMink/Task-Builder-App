@@ -14,12 +14,7 @@ const { Task } = db;
 // 4) Editing a to-do
 // 5) Deleting a to-do
 
-//getting all to-dos
-router.get("/", (req, res) => {
-  Task.findAll({}).then(tasks => res.json(tasks));
-});
-
-//adding a to-do
+//adding a task
 router.post("/new", (req, res) => {
   let { content } = req.body;
 
@@ -30,6 +25,11 @@ router.post("/new", (req, res) => {
     .catch((err) => {
       res.status(400).json(err);
     });
+});
+
+//getting all tasks
+router.get("/", (req, res) => {
+  Task.findAll({}).then(tasks => res.json(tasks));
 });
 
 //getting a single to-do
@@ -44,7 +44,7 @@ router.get("/:id", (req, res) => {
   });
 });
 
-//updates a to-do
+//updates a task - edits
 router.put("/:id", (req, res) => {
   const { id } = req.params;
   Task.findByPk(id).then((task) => {
@@ -63,7 +63,7 @@ router.put("/:id", (req, res) => {
   });
 });
 
-//deleting a to-do
+//deleting a task
 router.delete("/:id", (req, res) => {
   const { id } = req.params;
   Task.findByPk(id).then((task) => {
@@ -76,11 +76,10 @@ router.delete("/:id", (req, res) => {
   });
 });
 
-//delete all 
+//delete all tasks
 router.delete("/", (req, res) => {
   Task.destroy({
-    where:{}, truncate: true
-
+    truncate: true
   })
   res.sendStatus(204);
 });
