@@ -1,8 +1,7 @@
 import React from "react";
 import { useState } from "react";
-import { Redirect } from "react-router-dom";
-import { Box, Button, Form, FormField, TextInput } from "grommet";
-import { Add, Update } from "grommet-icons";
+import { Box, Button, Form, TextInput } from "grommet";
+import { Update } from "grommet-icons";
 
 function TaskEditForm({ edit, onSubmit }) {
   //already filled in with what was there previously

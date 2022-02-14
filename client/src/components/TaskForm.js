@@ -1,14 +1,12 @@
 import React from "react";
 import { useState } from "react";
-import { Redirect } from "react-router-dom";
 import {
   Box,
   Button,
   Form,
-  FormField,
   TextInput,
 } from "grommet";
-import { Add, FormAdd } from "grommet-icons";
+import { FormAdd } from "grommet-icons";
 
 function TaskForm({onSubmit}){
   const [task , setTask] = useState("");

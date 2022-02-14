@@ -56,7 +56,7 @@ function ToDoListPage() {
       });
   };
 
-  //checkoff task as done
+  //checkoff task as done - does not save in state properly
   const completeTask = (id) => {
 
       let updatedList = list.map((task) => {

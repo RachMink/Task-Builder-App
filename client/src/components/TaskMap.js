@@ -1,7 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import TaskForm from "../components/TaskForm";
-import { Grommet, Box, Grid, CardFooter, CardBody, Card, CheckBox, CardHeader } from "grommet";
+import { CardFooter, CardBody, Card, CheckBox } from "grommet";
 import { FormEdit, Trash } from "grommet-icons";
 import TaskEditForm from "./TaskEditForm";
 
