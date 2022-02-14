@@ -4,8 +4,9 @@ import { Redirect } from "react-router-dom";
 import { Box, Button, Form, FormField, TextInput } from "grommet";
 import { Add, Update } from "grommet-icons";
 
-function TaskEditForm({ onSubmit }) {
-  const [task, setTask] = useState("");
+function TaskEditForm({ edit, onSubmit }) {
+  //already filled in with what was there previously
+  const [task, setTask] = useState(edit);
 
   const handleSubmit = (event) => {
     event.preventDefault();
