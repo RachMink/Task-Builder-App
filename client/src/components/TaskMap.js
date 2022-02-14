@@ -22,9 +22,10 @@ function TaskMap({ list, completeTask, deleteTask , editTask}) {
     return <TaskEditForm edit={edit} onSubmit={submitEdit}/>
   }
 
-  return list.map((task, index) => (
+  return list.map((task, id) => (
 
     <Card
+      key={id}
       height="xsmall"
       width="medium"
       round="small"
@@ -38,7 +39,7 @@ function TaskMap({ list, completeTask, deleteTask , editTask}) {
         <CheckBox
           checked={task.checked}
           label={task.content}
-          onClick={() => completeTask()}
+          onClick={() => completeTask(task.id)}
         />
 
       </CardBody>
