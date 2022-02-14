@@ -31,7 +31,7 @@ function TaskForm({onSubmit}){
             name="content"
             onChange={(event) => setTask(event.target.value)}
             reverse
-            placeholder="Add task"
+            placeholder="Type new task"
           />
 
           <Box align="center" gap="xsmall">
