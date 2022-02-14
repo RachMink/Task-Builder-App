@@ -57,8 +57,18 @@ function ToDoListPage() {
   };
 
   //checkoff task as done
-  const completeTask = () => {
-    setChecked(!checked);
+  const completeTask = (id) => {
+
+      let updatedList = list.map((task) => {
+          if (task.id === id) {
+            task.isComplete = !task.isComplete;
+            setChecked(!checked);
+          }
+          return task;
+        });
+        setList(updatedList);
+    
+
   };
 
   //delete task
@@ -99,20 +109,16 @@ function ToDoListPage() {
   return (
     <Box align="center" pad="small">
       <Grid gap="xsmall">
-        {/* <Box align="center" pad="small"> */}
-          <TaskForm onSubmit={addToList} />
-        {/* </Box> */}
+        <TaskForm onSubmit={addToList} />
       </Grid>
 
       <Grid gap="small" align="center">
-
           <TaskMap
             list={list}
             completeTask={completeTask}
             deleteTask={deleteTask}
             editTask={editTask}
           />
-   
       </Grid>
       
       <Grid gap="small">
