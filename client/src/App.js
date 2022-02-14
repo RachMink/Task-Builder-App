@@ -55,7 +55,7 @@ class App extends React.Component {
             >
               <AppBar>
                 <Heading level="3" margin="none">
-                  Just Do It.
+                  Get It Done.
                 </Heading>
               </AppBar>
               <Box
@@ -63,7 +63,7 @@ class App extends React.Component {
                 flex
                 overflow={({ vertical: "scroll" }, { horizontal: "hidden" })}
               >
-                <Box flex align="center" justify="center">
+                <Box flex direction="column-reverse" align="center" justify="center">
                   <ToDoListPage />
                 </Box>
               </Box>
